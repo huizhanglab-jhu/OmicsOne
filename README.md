@@ -1,8 +1,7 @@
 # OmicsDiscoverer
 a tool kit for visualization and analysis of omics data
 
-# Try it without installation
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/huizhanglab-jhu/OmicsDiscoverer/master)
+# Try without installation ( click here [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/huizhanglab-jhu/OmicsDiscoverer/master) )
 
 # Installation (local version)
 1. Download and install Anacoda 3 (https://anaconda.org/)
