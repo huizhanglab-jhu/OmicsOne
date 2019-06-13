@@ -71,8 +71,8 @@ MarkupSafe==1.1.1
 matplotlib==3.0.3
 matplotlib-venn==0.11.5
 mistune==0.8.4
-mkl-fft==1.0.1
-mkl-random==1.0.1
+mkl-fft
+mkl-random
 more-itertools==6.0.0
 mpl-scatter-density==0.5
 msgpack==0.6.1
