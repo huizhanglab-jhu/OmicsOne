@@ -3,7 +3,7 @@ a tool kit for visualization and analysis of omics data
 
 # Try without installation ( click here [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/huizhanglab-jhu/OmicsDiscoverer/master) )
 
-# Installation (local version)
+# Installation locally on Ubuntu
 1. Download and install Anacoda 3 (https://anaconda.org/)
 2. Clone the OmicsDiscoverer repo to local computer
 3. Install python package dependencies using the requirements.txt in the root folder
