@@ -23,5 +23,4 @@ You should see the root folder opened automatically in your default Web browser 
 2. "Toggle Code" to show GUI part (optional)
 ![](https://github.com/huizhanglab-jhu/OmicsDiscoverer/blob/master/dist/demo_data/resources/frontpage_ui.png)
 3. Click Run to run the sample code
-![](https://github.com/huizhanglab-jhu/OmicsDiscoverer/blob/master/dist/demo_data/resources/transeffect_demo.png)
 
