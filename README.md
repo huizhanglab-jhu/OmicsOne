@@ -14,17 +14,17 @@ or paste the repo URL:https://github.com/huizhanglab-jhu/OmicsOne.git to https:/
 ```
 $ pip install -r requirements.txt
 ```
-4. Start Jupyter notebook under the root folder of OmicsDiscoverer
+4. Start Jupyter notebook under the root folder of OmicsOne
 ```
 $ jupyter notebook
 ```
 You should see the root folder opened automatically in your default Web browser (e.g. Chrome or Firefox)
-![](https://github.com/huizhanglab-jhu/OmicsDiscoverer/blob/master/dist/demo_data/resources/root.png)
+![](https://github.com/huizhanglab-jhu/OmicsOne/blob/master/dist/demo_data/resources/root.png)
 
 # Usage
 1. Click OmicsDiscovererDemo.ipynb 
-![](https://github.com/huizhanglab-jhu/OmicsDiscoverer/blob/master/dist/demo_data/resources/frontpage_code.png)
+![](https://github.com/huizhanglab-jhu/OmicsOne/blob/master/dist/demo_data/resources/frontpage_code.png)
 2. "Toggle Code" to show GUI part (optional)
-![](https://github.com/huizhanglab-jhu/OmicsDiscoverer/blob/master/dist/demo_data/resources/frontpage_ui.png)
+![](https://github.com/huizhanglab-jhu/OmicsOne/blob/master/dist/demo_data/resources/frontpage_ui.png)
 3. Click Run to run the sample code
 
