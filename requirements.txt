@@ -84,7 +84,7 @@ sklearn==0.0
 soupsieve==1.9.3
 statsmodels==0.10.1
 suds-jurko==0.6
-terminado==0.8.2
+#terminado==0.8.2
 testpath==0.4.2
 tornado==6.0.3
 tqdm==4.35.0
