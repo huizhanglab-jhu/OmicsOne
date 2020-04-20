@@ -1,0 +1,34 @@
+@data
+0 = path: /home/yingwei/newdrive/project/CPTAC_OV_TCGA/data/Cell2016/phenotype_table.xlsx
+0 = type: meta
+1 = path: /home/yingwei/newdrive/project/CPTAC_OV_TCGA/data/Proteomics_JHU/TCGA_Ovarian_JHU_Proteome.itraq.preprocessed.demo.csv
+1 = type: protein
+1 = data_type: log2
+@method
+0 = preprocess: index=bcr_patient_barcode
+0 = heatmap: groups=tumor_grade/tumor_stage/age_at_diagnosis,colors=Blues/Reds/Greens, data_types=C/C/N
+0 = sample_corr: groups=tumor_grade/tumor_stage/age_at_diagnosis/vital_status/daystodeath_or_LFU, data_type=meta
+0 = info_count: group=tumor_grade, data_type=C
+1 = preprocess: index=Gene, remove_decoy=RRRR, log_transform=False, remove_missing_values=100%, normalize=log_median_0
+1 = count: figure_width=20,figure_height=5
+1 = sample_corr: figure_width=20,figure_height=20,groups=OVARIAN-CONTROL.1/OVARIAN-CONTROL.2/OVARIAN-CONTROL.3
+1 = sample_cv: groups=OVARIAN-CONTROL.1/OVARIAN-CONTROL.2/OVARIAN-CONTROL.3
+1 = dem: group=orig_subtype, ordered_groups=Differentiated/Immunoreactive/Mesenchymal/Proliferative, target=A1BG, target_type=Gene, figure_title = A1BG
+1 = pca: group=orig_subtype
+1 = de2: comparison_type=group, group=orig_subtype,group1=Proliferative,group2=Mesenchymal,method=Mannwhiteneyu,multiple_tests_method=fdr_bh,enrich_database=/home/yingwei/newdrive/bitbucket/omicsone/omicsone/res/databases/enrichment
+1 = CancerSubtypes: tag=tumor_protein_subtypes, cluster=4, phenotypes=vital_status/orig_subtype
+#2 = preprocess: log_transform=2, remove_missing_values=100%, normalization=median0
+#2 = count: group=Tumor/Normal
+#2 = pca: group=Tumor/Normal
+#3 = preprocess: log_transform=2, remove_missing_values=100%, normalization=median0
+#3 = de2: group= Tumor/Normal
+#3 = count: group=Tumor/Normal
+#3 = pca: group=Tumor/Normal
+#3 = de2: group = Tumor/Normal
+#1,2 = missing_label_detection: default=True
+#1,2 = CrossDE: group=Tumor/Normal,test=t
+#1,2 = cancersubtypes: default = True
+#1,2 = correlation: default = True
+@report
+out_dir = /home/yingwei/newdrive/project/CPTAC_OV_TCGA/output/20190827
+
