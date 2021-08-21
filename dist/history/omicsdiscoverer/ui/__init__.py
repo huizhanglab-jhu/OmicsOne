@@ -1,1 +1,0 @@
-from .transeffect import UITranseffect
