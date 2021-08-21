@@ -7,8 +7,7 @@ The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in an existed Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
 1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual)
 <br>
-scroll down to the bottom of the front page
-<br>
+scroll down to the bottom of the front page <br>
 ![](images/anaconda_download2.png)
 <br>
 download the 64-bit version and install anaconda
