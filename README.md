@@ -5,11 +5,10 @@ OmicsOne:  Associate Omics Data with Phenotypes in One-Click
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in an existed Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
-1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual)
-
-scroll down to the bottom of the front page
+1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual), and scroll down to the bottom of the front page
 ![](images/anaconda_download2.png)
 download the 64-bit version and install anaconda
+<br>
 ![](images/anaconda_install_2.png)<br>
 ![](images/anaconda_install_3.png)<br>
 ![](images/anaconda_install_4.png)<br>
