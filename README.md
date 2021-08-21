@@ -3,6 +3,7 @@ a tool kit for visualization and analysis of omics data
 
 # Installation locally on Windows
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
+The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in any Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
 1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual)
 ![](images/anaconda_download.png)
