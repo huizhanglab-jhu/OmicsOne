@@ -95,7 +95,7 @@ prompt-toolkit==3.0.19
 ptyprocess==0.7.0
 pycparser==2.20
 Pygments==2.9.0
-PyInstaller==3.4
+PyInstaller==3.6
 pyparsing==2.4.7
 PyQt5==5.9.2
 pyrsistent==0.18.0
