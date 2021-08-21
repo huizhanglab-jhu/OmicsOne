@@ -5,27 +5,22 @@ OmicsOne:  Associate Omics Data with Phenotypes in One-Click
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in an existed Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
-1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual), and scroll down to the bottom of the front page
+1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual), and scroll down to the bottom of the front page <br>
 ![](images/anaconda_download2.png)<br>
 ![](images/anaconda_install_2.png)<br>
 ![](images/anaconda_install_3.png)<br>
 ![](images/anaconda_install_4.png)<br>
-Select folder you want to install
-<br>
+Select folder you want to install <br>
 ![](images/anaconda_install_5.png)<br>
-Add Anaconda 3 to PATH (optional)
-<br>
+Add Anaconda 3 to PATH (optional) <br>
 ![](images/anaconda_install_6.png)<br>
 ![](images/anaconda_install_7.png)<br>
-Wait until it is completed
-<br>
+Wait until it is completed <br>
 ![](images/anaconda_install_8.png)<br>
 ![](images/anaconda_install_9.png)<br>
-<br>
 2. Install conda virtual environment for Python 3.6
 Click Anaconda Prompt (anaconda3) to open the command line window. <br>
 ![](images/anaconda_cmd.png) <br>
-<br>
 type 'conda create --name omicsone python=3.6' to install python 3.6 environment named as 'omicsone'<br>
 ![](images/anaconda_cmd_2.png) <br>
 Select 'y' for 'Proceed ([y]/n)?' and wait until the Python 3.6 environment of OmicsOne is established.<br>
