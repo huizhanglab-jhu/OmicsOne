@@ -9,7 +9,6 @@ You can also choose to install OmicsOne in an existed Python 3.6 environment (Sk
 <br>
 scroll down to the bottom of the front page <br>
 ![](images/anaconda_download2.png)
-<br>
 download the 64-bit version and install anaconda
 <br>
 ![](images/anaconda_install_2.png)<br>
