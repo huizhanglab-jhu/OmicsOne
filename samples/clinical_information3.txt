@@ -1,0 +1,107 @@
+Sample_ID	Pathological_Status(Categorical)	Tumor_Cellularity(Numerical )	Anatomic_Site_Tumor(Categorical)	Origin_Site_Disease(Categorical)	Participant_Gender(Categorical)	Participant_Race(Categorical)	Participant_Procurement_Age_Month(Numerical)	Tumor_Grade(Numerical)	Tumor_Stage_Ovary_FIGO(Numerical)	SampleCluster_Global(Categorical)	SampleCluster_SPEG(Categorical)	SampleCluster_IGP(Categorical)
+SPL 005	Tumor	75	Ovary	Ovary	Female	Asian	528	3	3	1	1	1
+SPL 071	Tumor	70	Ovary	Ovary	Female	Asian	792	2	1	1	1	2
+SPL 002	Tumor	60	Omentum	Ovary	Female	White	802	NA	3	1	1	3
+SPL 102	Tumor	70	Omentum	Fallopian tube	Female	White	720	3	3	2	2	2
+SPL 043	Non-Tumor	NA	NA	Ovary	Female	Asian	528	3	3	NA	NA	NA
+SPL 032	Tumor	90	Omentum	Fallopian tube	Female	White	637	3	3	1	1	1
+SPL 104	Tumor	60	Ovary	Ovary	Female	White	656	3	3	2	3	3
+SPL 092	Tumor	70	Omentum	Fallopian tube	Female	White	762	3	3	2	1	1
+SPL 012	Tumor	95	Omentum	Ovary	Female	White	614	3	3	1	1	1
+SPL 059	Non-Tumor	NA	NA	Fallopian tube	Female	White	665	3	3	NA	NA	NA
+SPL 010	Tumor	70	Omentum	Peritoneum	Female	White	849	3	3	3	3	3
+SPL 099	Tumor	75	Ovary	Ovary	Female	White	733	2	1	2	2	2
+SPL 105	Tumor	70	Omentum	Ovary	Female	White	840	3	3	3	3	3
+SPL 076	Tumor	60	Omentum	Fallopian tube	Female	White	663	3	3	3	3	3
+SPL 049	Non-Tumor	NA	NA	Peritoneum	Female	White	849	3	3	NA	NA	NA
+SPL 064	Tumor	65	Ovary	Fallopian tube	Female	White	887	3	3	1	1	2
+SPL 025	Tumor	80	Ovary	Ovary	Female	White	600	3	3	1	1	2
+SPL 031	Tumor	90	Omentum	Fallopian tube	Female	White	870	3	4	3	3	3
+SPL 041	Non-Tumor	NA	NA	NA	Female	American Indian or Alaska Native	753	NA	NA	NA	NA	NA
+SPL 001	Tumor	60	Ovary	Ovary	Female	White	759	NA	3	3	3	3
+SPL 066	Tumor	75	Omentum	Fallopian tube	Female	Asian	606	3	4	3	1	1
+SPL 056	Non-Tumor	NA	NA	Ovary	Female	White	672	3	3	NA	NA	NA
+SPL 017	Tumor	90	Ovary	Ovary	Female	White	672	3	3	3	2	2
+SPL 033	Tumor	90	Omentum	Fallopian tube	Female	White	1031	3	3	3	2	2
+SPL 034	Tumor	90	Omentum	Fallopian tube	Female	Asian	701	3	3	1	1	3
+SPL 018	Tumor	98	Omentum	Fallopian tube	Female	White	535	3	3	3	3	3
+SPL 006	Tumor	65	Omentum	Fallopian tube	Female	White	717	3	4	3	3	3
+SPL 011	Tumor	60	Omentum	Ovary	Female	White	707	NA	3	3	3	3
+SPL 075	Tumor	80	Ovary	Ovary	Female	White	741	3	3	3	2	2
+SPL 013	Tumor	65	Omentum	Ovary	Female	White	687	3	3	3	3	3
+SPL 046	Non-Tumor	NA	NA	Ovary	Female	Asian	789	2	3	NA	NA	NA
+SPL 079	Tumor	80	Ovary	Ovary	Female	White	673	3	3	1	2	2
+SPL 044	Non-Tumor	NA	NA	Ovary	Female	White	707	NA	3	NA	NA	NA
+SPL 019	Tumor	90	Ovary	Ovary	Female	White	694	3	3	1	2	2
+SPL 027	Tumor	80	Ovary	Ovary	Female	Asian	706	3	3	1	1	2
+SPL 040	Non-Tumor	NA	NA	NA	Female	White	861	NA	NA	NA	NA	NA
+SPL 093	Tumor	75	Pelvic mass	Ovary	Female	White	802	3	3	3	3	3
+SPL 021	Tumor	90	Pelvic mass	Peritoneum	Female	White	932	3	3	3	3	3
+SPL 053	Non-Tumor	NA	NA	Peritoneum	Female	White	932	3	3	NA	NA	NA
+SPL 004	Tumor	80	Ovary	Ovary	Female	Black or African American	687	3	3	1	1	1
+SPL 077	Tumor	90	Ovary	Ovary	Female	White	686	3	3	1	1	1
+SPL 055	Non-Tumor	NA	NA	Peritoneum	Female	White	707	3	3	NA	NA	NA
+SPL 009	Tumor	65	Omentum	Ovary	Female	White	448	3	4	3	1	1
+SPL 072	Tumor	65	Omentum	Fallopian tube	Female	White	827	3	3	3	3	3
+SPL 007	Tumor	70	Omentum	Fallopian tube	Female	White	712	3	4	3	1	1
+SPL 020	Tumor	90	Ovary	Peritoneum	Female	White	707	3	3	3	3	2
+SPL 100	Tumor	60	Omentum	Ovary	Female	White	747	3	3	3	3	3
+SPL 073	Tumor	90	Omentum	Ovary	Female	White	863	3	4	3	1	3
+SPL 081	Tumor	75	Omentum	Ovary	Female	Asian	712	3	3	3	3	3
+SPL 054	Non-Tumor	NA	NA	Fallopian tube	Female	White	693	3	3	NA	NA	NA
+SPL 038	Non-Tumor	NA	NA	Peritoneum	Female	White	729	3	3	NA	NA	NA
+SPL 068	Tumor	75	Omentum	Peritoneum	Female	White	729	3	3	3	3	3
+SPL 015	Tumor	85	Omentum	Ovary	Female	White	790	3	3	1	1	1
+SPL 087	Tumor	65	Peritoneum	Ovary	Female	White	762	NA	NA	3	3	3
+SPL 074	Tumor	90	Ovary	Ovary	Female	White	529	NA	NA	1	2	2
+SPL 103	Tumor	75	Ovary	Ovary	Female	White	639	3	3	3	3	3
+SPL 080	Tumor	70	Ovary	Ovary	Female	White	790	3	3	3	3	3
+SPL 026	Tumor	90	Ovary	Peritoneum	Female	White	898	3	3	1	1	2
+SPL 085	Tumor	65	Omentum	Ovary	Female	White	695	3	4	3	3	3
+SPL 069	Tumor	85	Omentum	Ovary	Female	Asian	472	3	4	1	1	1
+SPL 045	Non-Tumor	NA	NA	NA	Female	Asian	634	NA	NA	NA	NA	NA
+SPL 016	Tumor	70	Omentum	Peritoneum	Female	White	820	3	4	3	3	3
+SPL 060	Non-Tumor	NA	NA	Peritoneum	Female	White	820	3	4	NA	NA	NA
+SPL 014	Tumor	65	Omentum	Fallopian tube	Female	White	761	3	3	3	3	3
+SPL 094	Tumor	60	Omentum	Fallopian tube	Female	White	765	3	3	3	3	3
+SPL 097	Tumor	75	Ovary	Ovary	Female	White	694	2	3	1	1	1
+SPL 051	Non-Tumor	NA	NA	Ovary	Female	White	886	3	3	NA	NA	NA
+SPL 035	Tumor	90	Omentum	Fallopian tube	Female	White	637	3	3	3	3	3
+SPL 028	Tumor	90	Ovary	Ovary	Female	White	559	3	3	1	1	1
+SPL 023	Tumor	95	Ovary	Ovary	Female	White	886	3	3	3	1	2
+SPL 003	Tumor	70	Omentum	Ovary	Female	White	753	2	3	3	3	3
+SPL 067	Tumor	65	Omentum	Fallopian tube	Female	NA	552	3	3	3	3	3
+SPL 061	Non-Tumor	NA	NA	Ovary	Female	White	688	NA	2	NA	NA	NA
+SPL 098	Tumor	65	Omentum	Fallopian tube	Female	White	854	3	3	3	3	3
+SPL 089	Tumor	70	Pelvic mass	Ovary	Female	White	652	3	4	2	2	2
+SPL 048	Non-Tumor	NA	NA	Ovary	Female	White	612	3	3	NA	NA	NA
+SPL 106	Tumor	65	Omentum	Ovary	Female	White	612	3	3	2	3	3
+SPL 084	Tumor	65	Omentum	Ovary	Female	NA	692	3	4	2	3	3
+SPL 109	Tumor	90	Ovary	Ovary	Female	White	695	3	3	1	1	3
+SPL 058	Non-Tumor	NA	NA	Fallopian tube	Female	Black or African American	625	3	3	NA	NA	NA
+SPL 082	Tumor	70	NA	Peritoneum	Female	White	801	3	3	2	2	2
+SPL 101	Tumor	90	Ovary	Ovary	Female	White	688	3	3	2	2	2
+SPL 008	Tumor	80	Ovary	Fallopian tube	Female	White	580	3	3	2	2	2
+SPL 086	Tumor	65	Ovary	Ovary	Female	White	522	3	4	2	2	2
+SPL 030	Tumor	90	Omentum	Peritoneum	Female	White	650	3	4	1	1	1
+SPL 037	Tumor	90	Ovary	Ovary	Female	White	583	3	3	2	2	2
+SPL 062	Non-Tumor	NA	NA	Ovary	Female	White	583	3	3	NA	NA	NA
+SPL 107	Tumor	75	Ovary	Ovary	Female	White	954	NA	NA	1	1	2
+SPL 029	Tumor	90	Omentum	Ovary	Female	White	605	3	3	1	1	1
+SPL 088	Tumor	75	Ovary	Ovary	Female	White	653	3	3	2	2	2
+SPL 083	Tumor	65	Omentum	Ovary	Female	White	763	3	3	2	3	3
+SPL 108	Tumor	75	Ovary	Ovary	Female	Black or African American	591	NA	3	1	1	1
+SPL 078	Tumor	85	Ovary	Ovary	Female	White	728	3	3	1	1	2
+SPL 057	Non-Tumor	NA	NA	Ovary	Female	White	828	3	3	NA	NA	NA
+SPL 063	Non-Tumor	NA	NA	Ovary	Female	White	679	2	3	NA	NA	NA
+SPL 036	Tumor	80	Omentum	Ovary	Female	White	679	2	3	2	2	2
+SPL 024	Tumor	90	Ovary	Ovary	Female	White	933	3	3	2	1	1
+SPL 070	Tumor	70	Ovary	Ovary	Female	White	842	3	3	2	3	3
+SPL 091	Tumor	75	Ovary	Ovary	Female	White	782	3	4	2	2	2
+SPL 022	Tumor	80	Peritoneum	Peritoneum	Female	White	585	3	3	1	1	1
+SPL 090	Tumor	80	Ovary	Ovary	Female	White	527	3	3	2	2	2
+SPL 096	Tumor	90	Ovary	Ovary	Female	White	954	NA	3	2	2	2
+SPL 095	Tumor	70	Ovary	Ovary	Female	White	843	3	3	2	2	2
+SPL 065	Tumor	65	Omentum	Ovary	Female	White	762	3	4	2	3	2
+SPL 052	Non-Tumor	NA	NA	Peritoneum	Female	White	585	3	3	NA	NA	NA
+SPL 042	Non-Tumor	NA	NA	NA	Female	White	668	NA	NA	NA	NA	NA
