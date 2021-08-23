@@ -48,7 +48,7 @@ $ omicsone-runserver
 ```
 ![](images/anaconda_cmd_8.png)<br>
 8. OmicsOne will automatically start a new Window in your default web broswer, such as Chrome.
-It will automatically run the sample data to show the demo. 
+It will automatically run the sample data to show the demo. <br>
 (1) Input files: You can change the path in the input area to direct OmicsOne to run your own data. <br>
 (2) After validating the paths of input files and output directory, please check the 'Confirm Paths' to start the preprocessing <br>
-(3) Click 'run phenotype association analysis' button for the phenotype association analysis <br>
+(3) After checking the preprocessed data, click the red 'run phenotype association analysis' button for the phenotype association analysis <br>
