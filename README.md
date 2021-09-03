@@ -1,6 +1,8 @@
 # OmicsOne
 OmicsOne:  Associate Omics Data with Phenotypes in One-Click
 
+Contributors: Yingwei Hu, Minghui Ao
+
 # Installation locally on Windows
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
