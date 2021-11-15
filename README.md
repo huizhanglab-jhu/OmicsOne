@@ -5,7 +5,9 @@ Contributors: Yingwei Hu, Minghui Ao
 
 # Installation locally on Windows
 OmicsOne is run in Python 3.8.
-You can install it using pip from pypi.org if you have installed Python 3.8.
+You can install it using pip from pypi.org after you have installed Python 3.8.
+You can download Python 3.8 (64bit) from https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe or https://www.python.org/downloads/windows/ for other versions.
+You can also install Anaconda to build the Python environment. The step by step tutorial is in the section below.
 ```
 $ pip install omicsone
 ```
@@ -24,7 +26,7 @@ Users can click 'Sample HGSOC' or 'Sample LSCC' to launch the test data sets, an
 # Installation of Anaconda (Optional)
 OmicsOne was developed under conda virtual environment. 
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
-As OmicsOne has been upgraded to Python 3.8 and stop supporting of Python 3.6. Please note all the followintg "3.6" should be changed to "3.8" in the screen shots.
+OmicsOne has been upgraded to support Python 3.8 and stop supporting Python 3.6. Please note all the followintg "3.6" should be changed to "3.8" in the screen shots.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in an existed Python 3.8 environment (Skip Step.1-4) without install Anaconda 3.
 1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual), and scroll down to the bottom of the front page <br>
