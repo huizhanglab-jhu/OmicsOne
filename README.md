@@ -6,7 +6,7 @@ Contributors: Yingwei Hu, Minghui Ao
 # Installation locally on Windows
 OmicsOne is run in Python 3.8.
 You can install it using pip from pypi.org after you have installed Python 3.8.
-You can download Python 3.8 (64bit) from https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe or https://www.python.org/downloads/windows/ for other versions.
+You can download Python 3.8 (64bit) from https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe or check https://www.python.org/downloads/windows/ for other versions.
 You can also install Anaconda to build the Python environment. The step by step tutorial is in the section below.
 ```
 $ pip install omicsone
