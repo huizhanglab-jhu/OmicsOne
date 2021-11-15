@@ -4,6 +4,25 @@ OmicsOne:  Associate Omics Data with Phenotypes in One-Click
 Contributors: Yingwei Hu, Minghui Ao
 
 # Installation locally on Windows
+OmicsOne is run in Python 3.8.
+You can install it using pip from pypi.org if you have installed Python 3.8.
+```
+$ pip install omicsone
+```
+You can also download the wheel file from this repo to install it.
+```
+$ pip install omicsone-1.1.6-cp38-cp38m-win_amd64.whl
+```
+All the package dependencies will be installed automatically.
+If OmicsOne has been install successfully, it can be started by the following command.
+```
+$ omicsone-runserver
+```
+![](images/gui.png)<br>
+Users can click 'Sample HGSOC' or 'Sample LSCC' to launch the test data sets, and click the 'Start' button to run the analysis.
+
+# Installation of Anaconda (Optional)
+OmicsOne was developed under conda virtual environment. 
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
 You can also choose to install OmicsOne in an existed Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
@@ -34,23 +53,3 @@ In this demo, the root folder path of OmicsOne is C:\Users\Yingwei\Documents\Git
 4. Activate the Python 3.6 environment named as 'omicsone' and change directory to the root folder of OmicsOne.<br>
 type 'conda activate omicsone' to activate Python 3.6 environment<br>
 ![](images/anaconda_cmd_5.png)<br>
-5. Install python package dependencies using the requirements.txt in the root folder of OmicsOne<br>
-```
-$ pip install -r requirements.txt
-```
-![](images/anaconda_cmd_6.png)<br>
-6. Change directory to the dist/ folder and install OmicsOne pacakge in the dist/ folder<br>
-```
-$ pip install omicsone-1.0-cp36-cp36m-win_amd64.whl
-```
-![](images/anaconda_cmd_7.png)<br>
-7. start OmicsOne server<br>
-```
-$ omicsone-runserver
-```
-![](images/anaconda_cmd_8.png)<br>
-8. OmicsOne will automatically start a new Window in your default web broswer, such as Chrome.
-It will automatically run the sample data to show the demo. <br>
-(1) Input files: You can change the path in the input area to direct OmicsOne to run your own data. <br>
-(2) After validating the paths of input files and output directory, please check the 'Confirm Paths' to start the preprocessing <br>
-(3) After checking the preprocessed data, click the red 'run phenotype association analysis' button for the phenotype association analysis <br>

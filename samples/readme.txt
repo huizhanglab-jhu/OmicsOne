@@ -1,0 +1,8 @@
+LSCC:
+CPTAC_LSCC_meta_info.xlsx
+CPTAC_LSCC_proteome.xlsx
+
+HGSOC (OVA):
+CPTAC_OVA_meta_info.txt
+CPTAC_OVA_proteome_log2r_20210811.txt
+CPTAC_OVA_glycoform_log2r_20210811.txt
