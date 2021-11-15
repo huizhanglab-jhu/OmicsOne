@@ -24,8 +24,9 @@ Users can click 'Sample HGSOC' or 'Sample LSCC' to launch the test data sets, an
 # Installation of Anaconda (Optional)
 OmicsOne was developed under conda virtual environment. 
 Here is a step by step tutorial for install Anaconda 3 and run OmicsOne under conda environment.
+As OmicsOne has been upgraded to Python 3.8 and stop supporting of Python 3.6. Please note all the followintg "3.6" should be changed to "3.8" in the screen shots.
 The video tutorial can be found in https://youtu.be/HOGLNm02qCk.
-You can also choose to install OmicsOne in an existed Python 3.6 environment (Skip Step.1-4) without install Anaconda 3.
+You can also choose to install OmicsOne in an existed Python 3.8 environment (Skip Step.1-4) without install Anaconda 3.
 1. Download and install Anacoda 3 (https://www.anaconda.com/products/individual), and scroll down to the bottom of the front page <br>
 ![](images/anaconda_download2.png)<br>
 ![](images/anaconda_install_2.png)<br>
@@ -39,17 +40,17 @@ Add Anaconda 3 to PATH (optional) <br>
 Wait until it is completed <br>
 ![](images/anaconda_install_8.png)<br>
 ![](images/anaconda_install_9.png)<br>
-2. Install conda virtual environment for Python 3.6
+2. Install conda virtual environment for Python 3.8
 Click Anaconda Prompt (anaconda3) to open the command line window. <br>
 ![](images/anaconda_cmd.png) <br>
-type 'conda create --name omicsone python=3.6' to install python 3.6 environment named as 'omicsone'<br>
+type 'conda create --name omicsone python=3.8' to install python 3.8 environment named as 'omicsone'<br>
 ![](images/anaconda_cmd_2.png) <br>
-Select 'y' for 'Proceed ([y]/n)?' and wait until the Python 3.6 environment of OmicsOne is established.<br>
+Select 'y' for 'Proceed ([y]/n)?' and wait until the Python 3.8 environment of OmicsOne is established.<br>
 ![](images/anaconda_cmd_3.png)<br>
 ![](images/anaconda_cmd_4.png)<br>
 3. Clone or download OmicsOne folder in your local computer<br>
 In this demo, the root folder path of OmicsOne is C:\Users\Yingwei\Documents\Github\OmicsOne<br>
 ![](images/omicsone_folder.png)<br>
-4. Activate the Python 3.6 environment named as 'omicsone' and change directory to the root folder of OmicsOne.<br>
-type 'conda activate omicsone' to activate Python 3.6 environment<br>
+4. Activate the Python 3.8 environment named as 'omicsone' and change directory to the root folder of OmicsOne.<br>
+type 'conda activate omicsone' to activate Python 3.8 environment<br>
 ![](images/anaconda_cmd_5.png)<br>
