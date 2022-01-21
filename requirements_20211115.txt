@@ -30,7 +30,7 @@ grequests==0.6.0
 gseapy==0.10.5
 idna==3.3
 ipykernel==6.5.0
-ipython==7.29.0
+ipython==7.31.1
 itsdangerous==2.0.1
 jedi==0.18.0
 Jinja2==3.0.3
