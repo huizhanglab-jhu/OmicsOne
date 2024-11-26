@@ -1,5 +1,6 @@
 # OmicsOne
 OmicsOne:  Associate Omics Data with Phenotypes in One-Click
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/huizhanglab-jhu/OmicsOne.git/omicsone-diff)
 
 Contributors: Yingwei Hu, Minghui Ao
 
@@ -56,3 +57,5 @@ In this demo, the root folder path of OmicsOne is C:\Users\Yingwei\Documents\Git
 4. Activate the Python 3.8 environment named as 'omicsone' and change directory to the root folder of OmicsOne.<br>
 type 'conda activate omicsone' to activate Python 3.8 environment<br>
 ![](images/anaconda_cmd_5.png)<br>
+
+
