@@ -1,4 +1,7 @@
 # OmicsOne
+
+The release of new versions of OmicsOne built on Streamlit has been moved to https://github.com/huizhanglab-jhu/omicsone-streamlit.
+
 OmicsOne:  Associate Omics Data with Phenotypes in One-Click
 
 Contributors: Yingwei Hu, Minghui Ao
