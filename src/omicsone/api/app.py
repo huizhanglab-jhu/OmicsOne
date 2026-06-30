@@ -14,7 +14,7 @@ from omicsone.api.routers import (
 
 app = FastAPI(
     title="OmicsOne API",
-    version="0.1.0",
+    version="2.0.0a0",
     description="Programmatic API for OmicsOne analysis services.",
 )
 

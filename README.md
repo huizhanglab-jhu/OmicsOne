@@ -7,8 +7,8 @@ mutation input tables into analysis outputs and publication-oriented figures.
 Current status:
 
 - CLI: available
-- Streamlit app: coming soon
-- FastAPI service: coming soon
+- Streamlit app: alpha
+- FastAPI service: alpha
 
 ## Available CLI Workflows
 
@@ -22,28 +22,80 @@ The command-line interface currently supports:
 - CNV correlation clean figure replay
 - Rust/PyO3-backed Spearman correlation through `omicsone.utils.spearmanr`
 
-## Install
-
-Install from the repository root:
-
-```powershell
-cd <path-to-omicsone-streamlit>
-python -m pip install -e .
-```
+## Installation
 
 The package metadata and pinned runtime dependencies are defined in
-`pyproject.toml`.
+`pyproject.toml`. OmicsOne 2.0.0 alpha is distributed as Python wheels for
+supported local Python environments and as a Docker image for reproducible
+server-style execution.
+
+### Developers
+
+Use an editable install when changing OmicsOne source code. Create and activate
+a dedicated environment first, then install from the repository root:
+
+```powershell
+cd C:\Users\yhu39\Documents\lab\OmicsOne
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -U pip setuptools wheel setuptools-rust
+.\.venv\Scripts\python -m pip install -e .
+```
+
+If the environment already exists, the editable install can be run without
+changing directories:
+
+```powershell
+python -m pip install -e C:\Users\yhu39\Documents\lab\OmicsOne
+```
+
+### Regular Users
+
+Install a prebuilt wheel from the GitHub Release that matches the local Python
+version. For example:
+
+```powershell
+python -m pip install .\omicsone-2.0.0a0-cp311-cp311-win_amd64.whl
+```
+
+Then verify the command-line entrypoints:
+
+```powershell
+omicsone --help
+omicsone-app --help
+omicsone-api --help
+```
+
+### Server Deployment
+
+Use Docker when the target machine should not manage Python, Rust build tools,
+or compiled extension compatibility directly:
+
+```powershell
+docker build -t omicsone:2.0.0a0 .
+docker run --rm -p 8000:8000 -v E:\lab\HSinI\runs\current:/runs/current omicsone:2.0.0a0
+```
+
+The Docker image builds the Rust-backed Spearman extension during image
+creation and runs with a fixed Python runtime.
+
+### Source Install
+
+Installing directly from a checkout is also supported, but regular users should
+prefer release wheels:
+
+```powershell
+python -m pip install -e .
+```
 
 After installation, these commands are available:
 
 ```powershell
 omicsone
+omicsone-app
+omicsone-api
 omicsone-replay-cnv-correlation
 omicsone-replay-cnv-correlation-clean-figures
 ```
-
-The Streamlit and FastAPI entrypoints may exist in the package, but they should
-be treated as coming soon until their interfaces are finalized.
 
 ## CLI Help
 
