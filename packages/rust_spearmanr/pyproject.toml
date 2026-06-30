@@ -1,0 +1,14 @@
+[build-system]
+requires = ["maturin>=1.5,<2"]
+build-backend = "maturin"
+
+[project]
+name = "omicsone-spearmanr"
+version = "0.1.0"
+description = "Rust/PyO3 Spearman correlation backend for OmicsOne"
+requires-python = ">=3.9,<3.12"
+
+[tool.maturin]
+module-name = "omicsone.utils._spearmanr"
+python-source = "../../src"
+features = ["pyo3/extension-module"]

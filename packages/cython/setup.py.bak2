@@ -1,0 +1,60 @@
+# setup.py
+from pathlib import Path
+from setuptools import setup
+from setuptools.command.build_py import build_py as _build_py
+from Cython.Build import cythonize
+import numpy as np
+import os
+
+# === 基本路径（注意：只让 THIS_DIR 变成绝对；其余一律转回相对再用） ===
+THIS_DIR = Path(__file__).parent.resolve()      # .../packages/cython
+SRC_DIR  = (THIS_DIR / "../../src").resolve()   # 项目源码根（仅用于发现文件）
+
+def to_rel(p) -> str:
+    """把任何路径转成相对 setup.py 的路径，且用 '/' 分隔。"""
+    return os.path.relpath(str(p), start=THIS_DIR).replace("\\", "/")
+
+# === 选择要 Cython 编译的 .py（排除 __init__.py） ===
+UTILS_DIR = SRC_DIR / "omicsone_streamlit" / "utils"
+to_cythonize = [
+    to_rel(p) for p in UTILS_DIR.rglob("*.py")
+    if p.name != "__init__.py"
+]
+
+if not to_cythonize:
+    print("[setup.py] No .py sources to cythonize under utils (excluding __init__.py).")
+
+# === 运行 cythonize：使用相对 build_dir，避免产生绝对路径 ===
+ext_modules = cythonize(
+    to_cythonize,
+    compiler_directives={"language_level": "3", "embedsignature": True},
+    build_dir=to_rel(THIS_DIR / "build" / "cython"),  # 生成的 .c 放在构建目录
+    force=True,                                       # 避免复用历史产物
+)
+
+# 保险：把 cythonize 生成的 Extension 里的 sources/depends 也统一为相对路径
+for ext in ext_modules:
+    if getattr(ext, "sources", None):
+        ext.sources = [to_rel(s) for s in ext.sources]
+    if getattr(ext, "depends", None):
+        ext.depends = [to_rel(d) for d in ext.depends]
+
+# === 只打包 .pyd，不打包同名 .py（保留 __init__.py） ===
+class build_py_no_py_in_utils(_build_py):
+    """在 build 阶段剔除 omicsone_streamlit.utils 中除 __init__.py 外的纯 .py 源。"""
+    def find_package_modules(self, package, package_dir):
+        modules = super().find_package_modules(package, package_dir)
+        filtered = []
+        for pkg, mod, fname in modules:
+            if pkg == "omicsone_streamlit.utils" and mod != "__init__":
+                continue
+            filtered.append((pkg, mod, fname))
+        return filtered
+
+setup(
+    # 其余元数据（name/version 等）建议放在 pyproject.toml
+    ext_modules=ext_modules,
+    include_dirs=[np.get_include()],
+    cmdclass={"build_py": build_py_no_py_in_utils},
+    # zip_safe=False,  # 如需要可开启
+)

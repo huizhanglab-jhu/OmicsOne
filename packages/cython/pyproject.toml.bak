@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel","Cython","numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omicsone-streamlit"
+# 若使用共享版本：改成动态
+dynamic = ["version"]          
+description = "OmicsOne Streamlit app (source)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["streamlit>=1.30"]
+
+[tool.setuptools.dynamic]
+version = { file = "../../VERSION" } # ← 在这里读取版本
+
+
+[tool.setuptools.package-dir]
+"" = "../../src"
+
+[tool.setuptools.packages.find]
+where = ["../../src"]
+include = ["omicsone_streamlit*"]
+
+[tool.setuptools.package-data]
+"omicsone_streamlit" = [
+  "**/*.toml", "**/*.yaml", "**/*.yml",
+  "**/*.json", "**/*.csv",
+  "**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.svg", "**/*.ico",
+  "**/*.ttf", "**/*.otf"
+]
+
+[project.scripts]
+omicsone-streamlit = "omicsone_streamlit.__main__:main"

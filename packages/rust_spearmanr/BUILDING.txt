@@ -1,0 +1,25 @@
+OmicsOne Spearman Rust Extension
+================================
+
+This package builds the Rust/PyO3 backend for omicsone.utils.spearmanr.
+
+From the repository root, the normal OmicsOne package build uses setup.py and
+setuptools-rust:
+
+    python -m pip install .
+
+For focused extension development from this directory:
+
+    python -m pip install maturin
+    python -m maturin develop --release
+
+Then use:
+
+    from omicsone.utils import spearmanr
+
+    spearmanr.compute_file(
+        "cnv_for_corr.txt",
+        "rna_for_corr.txt",
+        "spearman_output.txt",
+        min_valid_pairs=4,
+    )

@@ -1,0 +1,14 @@
+.git
+.vscode
+build
+dist
+dist_artifacts
+**/__pycache__
+**/*.py[cod]
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/target
+**/*.egg-info
+.DS_Store
+tmp_spearman_check

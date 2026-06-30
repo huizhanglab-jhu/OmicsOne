@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPTAC Gastric vs OmicsOne Streamlit Code Review</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #5d6875;
+      --line: #d8dee7;
+      --accent: #1f6feb;
+      --green: #1a7f37;
+      --orange: #9a6700;
+      --red: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    header {
+      background: #182230;
+      color: #fff;
+      padding: 28px 36px;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+    h1 { font-size: 28px; }
+    h2 {
+      margin-top: 28px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: 21px;
+    }
+    h3 { margin-top: 18px; font-size: 17px; }
+    p { margin: 8px 0 12px; }
+    code {
+      background: #eef2f7;
+      border: 1px solid #d9e1ec;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.92em;
+    }
+    .subtitle { color: #d5dde8; max-width: 940px; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .meta div {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .stat strong { display: block; font-size: 24px; }
+    .tag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .tag.same { color: var(--red); background: #fff1f0; border-color: #ffd6d2; }
+    .tag.new { color: var(--green); background: #eaf7ee; border-color: #c8ead2; }
+    .tag.partial { color: var(--orange); background: #fff8c5; border-color: #f0dd8c; }
+    .tag.current { color: #174ea6; background: #edf4ff; border-color: #c9dcff; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    th {
+      background: #eef2f7;
+      font-weight: 700;
+    }
+    tr:last-child td { border-bottom: 0; }
+    ul { margin: 8px 0 12px 22px; padding: 0; }
+    li { margin: 4px 0; }
+    .note {
+      border-left: 4px solid var(--orange);
+      background: #fffaf0;
+      padding: 10px 12px;
+      margin: 12px 0;
+      color: #3b2f13;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CPTAC Gastric Project Function Summary and OmicsOne Comparison</h1>
+    <p class="subtitle">Report generated from local code inspection of <code>C:\Users\yhu39\Documents\GitHub\cptac_gastric</code> and <code>C:\Users\yhu39\Documents\GitHub\omicsone-streamlit</code> on 2026-06-02.</p>
+    <div class="meta">
+      <div><strong>Gastric project focus</strong><br>Notebook-driven gastric cohort analyses plus a small helper package under <code>tools/omicsone</code>.</div>
+      <div><strong>Current project focus</strong><br>Packaged OmicsOne app with Streamlit UI, FastAPI, CLI, replay configs, services, tests, and docs.</div>
+      <div><strong>Main conclusion</strong><br>Several generic helpers are redundant, while the gastric-specific glyco/PTM/XL-MS workflows are new relative to the current app.</div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Executive Summary</h2>
+      <div class="grid">
+        <div class="stat"><strong>30</strong>Gastric notebooks inspected under <code>notebooks/</code>.</div>
+        <div class="stat"><strong>10</strong>Python modules with functions or classes in <code>cptac_gastric</code>.</div>
+        <div class="stat"><strong>3</strong>Byte-identical redundant files found in the current repo.</div>
+        <div class="stat"><strong>6</strong>Gastric helper modules with functionality not directly present as standalone modules in the current repo.</div>
+      </div>
+      <div class="panel">
+        <p><strong>What cptac_gastric does:</strong> it is a research-analysis repository for CPTAC Gastric v1.5 data. It loads fixed gastric datafreeze files, runs differential testing, studies glycosylation enzymes and glycoforms, correlates enzymes with glycans, examines PTM crosstalk across phospho/acetyl/ubiquitin/glyco layers, draws circos-style PTM and XL-MS visualizations, and explores gastric cell-state or ecotype-specific signals.</p>
+        <p><strong>What is redundant:</strong> <code>tools/omicsone/diff.py</code>, <code>tools/omicsone/param.py</code>, and the empty <code>tools/omicsone/__init__.py</code> are exact duplicates of current <code>src/omicsone_streamlit/utils/</code> files. The simple gastric volcano plotting is also mostly subsumed by the current Streamlit volcano page and the newer packaged <code>omicsone.services.volcano_enrichment</code> workflow.</p>
+        <p><strong>What is new:</strong> gastric-specific data loaders, glycosylation enzyme/glycan model helpers, glycoform differential workflows, enzyme-glycan correlation notebooks, PTM circos/crosstalk plotting, XL-MS integration, and KEGG/GPML graph exploration are not first-class features in the current OmicsOne app.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Gastric Project Structure</h2>
+      <table>
+        <thead><tr><th>Path</th><th>Role</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>notebooks/</code></td><td>Main analysis layer</td><td>Dated notebooks for enzyme analyses, glyco correlation and differential analysis, PTM target-gene analysis, circos plots, XL-MS, and KEGG graph tests.</td></tr>
+          <tr><td><code>tools/omicsone/</code></td><td>Reusable helper package</td><td>Small Python package imported by notebooks as <code>omicsone.*</code>. Contains data loaders, differential testing, parameter parsing, glyco helpers, volcano plots, PTM plots, and crosstalk plots.</td></tr>
+          <tr><td><code>cptac_gastric_parser/</code></td><td>Stub parser package</td><td>Only contains a trivial <code>main()</code> that prints messages. No parser logic is currently implemented.</td></tr>
+          <tr><td><code>requirements.txt</code></td><td>Minimal dependency list</td><td>Lists <code>openpyxl</code>, <code>statsmodels</code>, and <code>adjustText</code>, but notebooks also import packages such as <code>pycirclize</code>, <code>gseapy</code>, <code>plotly</code>, <code>numba</code>, <code>joblib</code>, <code>pyvis</code>, <code>lxml</code>, <code>upsetplot</code>, and <code>matplotlib_venn</code>.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Gastric Helper Functions</h2>
+      <table>
+        <thead><tr><th>Module</th><th>Functions/classes</th><th>Functional summary</th><th>Comparison status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>tools/omicsone/data.py</code></td>
+            <td><code>get_cnv</code>, <code>get_transcriptomics</code>, <code>get_acetylomics</code>, <code>get_ubiquitomics</code>, <code>get_proteomics</code>, <code>get_glycoproteomics</code>, <code>get_phosphoproteomics</code>, <code>get_ubi_enz_table</code>, <code>get_ac_enz_table</code>, <code>get_phospho_enz_table</code>, <code>get_kinase_table_sara</code>, <code>get_phosphate_table_sara</code>, <code>get_meta_table</code>, <code>get_xlms_table</code></td>
+            <td>Loads fixed CPTAC Gastric datafreeze and reference files from hard-coded default paths or a supplied base directory. Covers CNV, RNA, acetylome, ubiquitome, proteome, glycoproteome, phosphoproteome, enzyme references, metadata, and XL-MS.</td>
+            <td><span class="tag new">New gastric-specific</span></td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/glyco.py</code></td>
+            <td><code>get_glyco_steps</code>, <code>get_glycoenzymes</code>, <code>decide_glycan_type</code></td>
+            <td>Reads the packaged <code>glycoenz.xlsx</code> steps sheet, returns glycosylation enzyme genes, and classifies glycan composition strings into <code>HM</code>, <code>only_F</code>, <code>only_S</code>, <code>F+S</code>, or <code>Other</code>.</td>
+            <td><span class="tag new">New domain helper</span></td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/diff.py</code></td>
+            <td><code>decide_sig</code>, <code>compare_two_groups</code></td>
+            <td>Generic two-group differential testing with t-test, paired t-test, Mann-Whitney, Wilcoxon, missingness filters, Benjamini-Hochberg FDR, and up/down labels.</td>
+            <td><span class="tag same">Exact duplicate</span> of <code>src/omicsone_streamlit/utils/diff.py</code></td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/diff2.py</code></td>
+            <td><code>decide_sig</code>, <code>remove_nans</code>, <code>compute_row</code>, <code>compare_two_groups</code></td>
+            <td>Parallelized differential testing using <code>joblib</code> plus <code>numba</code> helpers. Same statistical intent as <code>diff.py</code>, but optimized for row batches.</td>
+            <td><span class="tag partial">Partly overlaps</span> with current optimized service code, but this exact helper is not present.</td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/volcano.py</code></td>
+            <td><code>volcano_plot</code></td>
+            <td>Simple static seaborn/matplotlib volcano plot from a differential result table.</td>
+            <td><span class="tag partial">Mostly redundant</span> with <code>src/omicsone_streamlit/utils/omicsone_volcano.py</code> and <code>src/omicsone/services/volcano_enrichment.py</code>.</td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/ptm.py</code></td>
+            <td><code>plot_circle</code>, <code>plot_dst_circlce</code>, <code>plot_hist</code></td>
+            <td>Draws pycirclize-based per-gene PTM maps and histograms for phospho, acetyl, ubiquitin, and PTM correlation/distance relationships.</td>
+            <td><span class="tag new">New PTM visualization</span></td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/crosstalk.py</code></td>
+            <td><code>z_row_subset</code>, <code>plot_circos_xlms</code></td>
+            <td>Z-scores selected row subsets and draws per-gene circos plots combining PTM tracks with intra-gene XL-MS links.</td>
+            <td><span class="tag new">New XL-MS crosstalk</span></td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/param.py</code></td>
+            <td><code>Parameter</code>, <code>DiffParams</code>, <code>ProfileParams</code>, <code>PreprocessParams</code>, <code>DecompParams</code>, <code>ClusterParams</code>, <code>EnrichParams</code>, <code>SurvivalParams</code>, <code>GlycosylationParams</code>, <code>CrossTalkParams</code>, <code>AssociationParams</code>, <code>CommandParams</code></td>
+            <td>INI/config parameter holder classes for differential, profile, preprocessing, decomposition, clustering, enrichment, survival, glycosylation, crosstalk, and association workflows.</td>
+            <td><span class="tag same">Exact duplicate</span> of <code>src/omicsone_streamlit/utils/param.py</code></td>
+          </tr>
+          <tr>
+            <td><code>cptac_gastric_parser/main.py</code></td>
+            <td><code>main</code></td>
+            <td>Placeholder entry point that prints messages. No gastric parsing behavior.</td>
+            <td><span class="tag same">Redundant stub</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Notebook Workflow Summary</h2>
+      <table>
+        <thead><tr><th>Notebook group</th><th>Files</th><th>What they do</th><th>Reusable candidates</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Glycosylation enzyme differential analysis</td>
+            <td><code>20250223_enzs_ecotype.ipynb</code>, <code>20250223_enzs_stage.ipynb</code>, <code>20250223_enzs_TN.ipynb</code>, <code>20250223_glycoenz.ipynb</code>, <code>20250317_enzs_cell_states*.ipynb</code></td>
+            <td>Compares glycosylation, acetylation, ubiquitination, and phosphorylation enzyme abundance across tumor/normal, stage, ecotype, and cell-state groups. Uses volcano plots, FDR, and repeated <code>compare_ecotypes</code> or Wilcoxon-style routines.</td>
+            <td>Generic group-comparison UI/service support; gastric-specific enzyme gene set presets.</td>
+          </tr>
+          <tr>
+            <td>Enzyme-glycan correlation</td>
+            <td><code>20250302_enz_gly_corr*.ipynb</code></td>
+            <td>Correlates glycosylation enzymes and glycan/glycoform measurements, builds cluster views, filters significant or adjusted correlations, and explores pathway/glycan associations.</td>
+            <td>Glycan-aware correlation service; reusable clustering plot logic.</td>
+          </tr>
+          <tr>
+            <td>Glycoform differential analysis</td>
+            <td><code>20250324_glyco_diff*.ipynb</code></td>
+            <td>Tests glycoform abundance changes with and without protein-level changes, stratifies significant glycoforms, processes glycans in chunks, uses joblib in some notebooks, and produces box/annotation plots.</td>
+            <td>Glycoform-protein paired differential workflow; glycan classification and protein-change gating.</td>
+          </tr>
+          <tr>
+            <td>PTM target-gene and cell-state analysis</td>
+            <td><code>20250403_POLR2A_cellstate.ipynb</code>, <code>20250409_POLR2.ipynb</code>, <code>20250409_SRRM2.ipynb</code>, <code>20250409_VIM_cellstate.ipynb</code>, <code>20250410_PTM*.ipynb</code>, <code>20250412_PKM_ecotype.ipynb</code></td>
+            <td>Studies PTM sites around target proteins or cell-state/ecotype markers. Repeated logic builds pivot tables, calculates site correlations, z-scores selected samples, and draws circos tracks or heatmaps for phospho, acetyl, ubiquitin, and glyco data.</td>
+            <td>Per-gene PTM crosstalk viewer; target-gene preset workflows; reusable circos plot service.</td>
+          </tr>
+          <tr>
+            <td>Glyco clustering</td>
+            <td><code>20250413_glyco_clustering.ipynb</code></td>
+            <td>Clusters glyco/proteomics patterns, uses fast NaN-aware correlation functions, and annotates clusters by stage or cell-state attributes.</td>
+            <td>NaN-aware correlation utility; glyco clustering workflow.</td>
+          </tr>
+          <tr>
+            <td>XL-MS and PTM crosstalk</td>
+            <td><code>20250416_GC_XLMS.ipynb</code></td>
+            <td>Loads XL-MS links and multiple PTM tables, filters intra-gene crosslinks, z-scores sample subsets, and draws pycirclize links/tracks.</td>
+            <td>XL-MS crosstalk feature absent from current app.</td>
+          </tr>
+          <tr>
+            <td>Pathway graph exploration</td>
+            <td><code>20250227_kegg_test.ipynb</code></td>
+            <td>Uses <code>requests</code>, <code>lxml</code>, <code>networkx</code>, <code>pyvis</code>, and <code>jinja2</code> to parse or visualize pathway graph structures from KEGG/GPML-like resources.</td>
+            <td>Could complement current pathway scatter, but it is a different graph/network feature.</td>
+          </tr>
+          <tr>
+            <td>Supplementary acetyl/ubiquitin figure</td>
+            <td><code>Gastric_FigureS5A_Acetyl_Ubi.ipynb</code></td>
+            <td>Builds acetylation/ubiquitination overlap and enrichment-style supplementary figures, including Venn-style plots.</td>
+            <td>Publication figure helper, not a general current app feature.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">Notebook code contains repeated local helper definitions such as <code>compare_ecotypes</code>, <code>corr_sites</code>, <code>build_pivot_table*</code>, <code>z_row_subset</code>, and <code>get_expression_values</code>. If these workflows are migrated, those should become tested service functions instead of copied notebook cells.</div>
+    </section>
+
+    <section>
+      <h2>Current OmicsOne Capabilities</h2>
+      <table>
+        <thead><tr><th>Area</th><th>Representative files</th><th>Capabilities</th></tr></thead>
+        <tbody>
+          <tr><td>Streamlit UI</td><td><code>src/omicsone_streamlit/app.py</code>, <code>src/omicsone_streamlit/mypages/*.py</code></td><td>Interactive pages for home, datasets, databases, QC, differential analysis, omics cross-analysis, dimensionality reduction, meta analysis, genomics, and pipelines.</td></tr>
+          <tr><td>Reusable services</td><td><code>src/omicsone/services/*.py</code></td><td>Packaged engines for volcano/enrichment, CNV correlation pipeline, mutation figures, boxplots, pathway scatter, Spearman omics correlation, and FASTA gene maps.</td></tr>
+          <tr><td>API layer</td><td><code>src/omicsone/api/routers/*.py</code>, <code>src/omicsone/api/schemas/*.py</code></td><td>FastAPI endpoints for health, FASTA mapping, volcano enrichment, Spearman, CNV correlation, mutation figures, and boxplots.</td></tr>
+          <tr><td>Replay/config workflows</td><td><code>src/omicsone/replay/*.py</code>, <code>src/omicsone/replay/*.ini</code></td><td>Config-driven local execution for differential, boxplots, CNV correlation, pathway scatter, and mutation figures.</td></tr>
+          <tr><td>CLI and packaging</td><td><code>src/omicsone/cli/commands.py</code>, <code>pyproject.toml</code></td><td>Installed commands <code>omicsone</code>, <code>omicsone-api</code>, <code>omicsone-app</code>, and <code>omicsone-replay-cnv-correlation</code>.</td></tr>
+          <tr><td>Performance helpers</td><td><code>packages/rust_spearmanr/</code>, <code>src/omicsone/utils/spearmanr.py</code></td><td>Rust/PyO3 Spearman backend with Python fallback and file-based computation support.</td></tr>
+          <tr><td>Documentation and tests</td><td><code>docs/</code>, <code>tests/</code>, <code>skills/</code></td><td>Workflow docs, API docs, entrypoint tests, CLI dispatch tests, and layer-boundary tests.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Redundant Code</h2>
+      <table>
+        <thead><tr><th>cptac_gastric file</th><th>Current file or feature</th><th>Evidence</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>tools/omicsone/diff.py</code></td>
+            <td><code>src/omicsone_streamlit/utils/diff.py</code></td>
+            <td>Byte-identical SHA-256 content during local comparison.</td>
+            <td>Do not port this file as-is. Prefer the current package service implementation for new work, especially <code>omicsone.services.volcano_enrichment._compare_two_groups_fast</code> or a public wrapper around it.</td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/param.py</code></td>
+            <td><code>src/omicsone_streamlit/utils/param.py</code></td>
+            <td>Byte-identical SHA-256 content during local comparison.</td>
+            <td>Do not duplicate. If still needed, migrate to a single shared config schema or retire in favor of current replay config readers.</td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/__init__.py</code></td>
+            <td><code>src/omicsone_streamlit/utils/__init__.py</code></td>
+            <td>Both are empty files.</td>
+            <td>No migration value.</td>
+          </tr>
+          <tr>
+            <td><code>tools/omicsone/volcano.py</code></td>
+            <td><code>src/omicsone_streamlit/utils/omicsone_volcano.py</code>, <code>src/omicsone/services/volcano_enrichment.py</code></td>
+            <td>Gastric version is a simple static plot. Current repo already has customizable Streamlit plotting, enrichment integration, saved outputs, HTML report generation, presets, and API exposure.</td>
+            <td>Only port visual defaults if a gastric-specific style is desired.</td>
+          </tr>
+          <tr>
+            <td>Notebook-level differential helper code</td>
+            <td>Current differential, volcano, boxplot, pathway, and Spearman utilities</td>
+            <td>Many notebooks repeatedly implement group comparison, FDR, enrichment plotting, z-scoring, and correlations that overlap with existing utility/service functions.</td>
+            <td>Extract only gastric-specific grouping logic and domain presets; reuse existing current project engines.</td>
+          </tr>
+          <tr>
+            <td><code>cptac_gastric_parser/main.py</code></td>
+            <td>No useful current counterpart needed</td>
+            <td>Only prints placeholder text and initializes unused variables in the script guard.</td>
+            <td>Ignore unless a real parser is planned.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>New Gastric Features Worth Considering</h2>
+      <table>
+        <thead><tr><th>Feature</th><th>Why it is new</th><th>Potential migration target</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Gastric data registry and loaders</td>
+            <td>The current repo has generic matrix loading and configured datasets, but not a CPTAC Gastric v1.5 registry covering RNA, CNV, proteome, phosphoproteome, acetylome, ubiquitome, glycoproteome, metadata, enzyme references, and XL-MS.</td>
+            <td>Create <code>src/omicsone/resources</code> metadata or a cohort-specific config file, not hard-coded local paths.</td>
+          </tr>
+          <tr>
+            <td>Glycosylation enzyme model</td>
+            <td><code>glycoenz.xlsx</code> plus <code>get_glyco_steps</code> and <code>get_glycoenzymes</code> provide curated domain knowledge absent from current services.</td>
+            <td>Package as a resource and expose a glyco service.</td>
+          </tr>
+          <tr>
+            <td>Glycan type classification</td>
+            <td><code>decide_glycan_type</code> classifies composition strings by fucosylation/sialylation/high-mannose patterns.</td>
+            <td>Add a tested <code>omicsone.services.glyco</code> function with validation for missing composition keys.</td>
+          </tr>
+          <tr>
+            <td>Enzyme-glycan correlation workflows</td>
+            <td>The current app supports generic omics correlation, but not glycan-aware enzyme-to-glycoform correlation with glyco pathway annotations.</td>
+            <td>Build on <code>spearman_omics</code> and add glyco-specific annotation and filtering.</td>
+          </tr>
+          <tr>
+            <td>Protein-adjusted glycoform differential analysis</td>
+            <td>Several notebooks compare significant glycoform changes with or without corresponding protein abundance changes.</td>
+            <td>Add a paired glyco/protein differential pipeline with explicit outputs for all-glyco/all-protein, all-glyco/protein-no-change, significant-glyco/all-protein, and significant-glyco/protein-no-change modes.</td>
+          </tr>
+          <tr>
+            <td>PTM crosstalk circos plots</td>
+            <td>Current pathway scatter handles phosphosite/protein pathway plots, but not per-protein circos tracks integrating phospho, acetyl, ubiquitin, glyco, correlation, and distance links.</td>
+            <td>Implement a plotting service around the reusable parts of <code>ptm.py</code> and <code>crosstalk.py</code>.</td>
+          </tr>
+          <tr>
+            <td>XL-MS integration</td>
+            <td>Gastric notebooks and <code>plot_circos_xlms</code> use crosslink data to connect sites on the same gene/protein.</td>
+            <td>Add an XL-MS input schema, validation, and circos plot endpoint if this is a product feature.</td>
+          </tr>
+          <tr>
+            <td>KEGG/GPML graph visualization</td>
+            <td>The KEGG notebook explores graph/network extraction with pyvis, separate from the current pathway scatter plot workflow.</td>
+            <td>Consider as a pathway network viewer, but keep separate from existing scatter plots.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Migration Guidance</h2>
+      <div class="panel">
+        <h3>Keep</h3>
+        <ul>
+          <li>Domain logic from <code>data.py</code>, <code>glyco.py</code>, <code>ptm.py</code>, and <code>crosstalk.py</code>.</li>
+          <li>Notebook workflow intent: glyco enzyme analysis, protein-adjusted glycoform differential analysis, PTM crosstalk, XL-MS, and cell-state/ecotype grouping.</li>
+          <li>Useful accelerated ideas from <code>diff2.py</code>, but compare against the current vectorized <code>volcano_enrichment</code> service before adopting.</li>
+        </ul>
+        <h3>Do Not Copy</h3>
+        <ul>
+          <li><code>diff.py</code>, <code>param.py</code>, and empty <code>__init__.py</code>, because they are already duplicated in the current repo.</li>
+          <li>Hard-coded local paths such as <code>D:\onedrive\OneDrive - Johns Hopkins\project\CPTAC-Gastric\...</code>.</li>
+          <li>Notebook-only repeated helper functions without tests or typed inputs.</li>
+        </ul>
+        <h3>Best Next Implementation Shape</h3>
+        <ul>
+          <li>Add a <code>src/omicsone/services/glyco.py</code> module for glyco enzyme resources, glycan type classification, and glyco/protein differential helpers.</li>
+          <li>Add a <code>src/omicsone/services/ptm_crosstalk.py</code> module for reusable PTM/XL-MS circos plotting.</li>
+          <li>Add replay config files and docs only after service functions are stable.</li>
+          <li>Add Streamlit/API integration after service tests pass, following the current app's service-first pattern.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Detailed Notebook Inventory</h2>
+      <table>
+        <thead><tr><th>Notebook</th><th>Approx. code cells</th><th>Main keywords from code</th><th>Detected local functions</th></tr></thead>
+        <tbody>
+          <tr><td><code>20250223_enzs_ecotype.ipynb</code></td><td>47</td><td>diff, ecotype, proteomics, phospho, glyco, volcano</td><td><code>compare_ecotypes</code></td></tr>
+          <tr><td><code>20250223_enzs_stage.ipynb</code></td><td>31</td><td>diff, proteomics, phospho, glyco, stage, volcano</td><td>None detected</td></tr>
+          <tr><td><code>20250223_enzs_TN.ipynb</code></td><td>27</td><td>diff, proteomics, phospho, glyco, volcano</td><td>None detected</td></tr>
+          <tr><td><code>20250223_glycoenz.ipynb</code></td><td>40</td><td>diff, glyco, proteomics, phospho, enzyme, volcano</td><td>None detected</td></tr>
+          <tr><td><code>20250227_kegg_test.ipynb</code></td><td>19</td><td>pathway, kegg</td><td><code>add_node_from_element</code> variants</td></tr>
+          <tr><td><code>20250302_enz_gly_corr*.ipynb</code></td><td>47 to 60 each</td><td>glyco, proteomics, glycan, pathway, diff, cluster</td><td><code>significance_label</code>, <code>plot_clusters</code> in selected versions</td></tr>
+          <tr><td><code>20250317_enzs_cell_states*.ipynb</code></td><td>52 and 71</td><td>diff, ecotype, proteomics, glyco, phospho, cell_state</td><td><code>compare_ecotypes</code>, <code>compare_cell_states_ks</code>, <code>calc_fdr</code></td></tr>
+          <tr><td><code>20250324_glyco_diff*.ipynb</code></td><td>38 to 111 each</td><td>glycan, glyco, proteomics, diff, cluster, pathway</td><td><code>chunk_list</code>, <code>process_glycan</code>, <code>process_chunk</code> in selected versions</td></tr>
+          <tr><td><code>20250403_POLR2A_cellstate.ipynb</code></td><td>55</td><td>phospho, POLR2, proteomics, cell_state, cluster, spearman</td><td>None detected</td></tr>
+          <tr><td><code>20250409_POLR2.ipynb</code></td><td>90</td><td>phospho, circos, cluster, cell_state, proteomics, spearman</td><td><code>build_pivot_table2</code>, <code>build_pivot_table3</code></td></tr>
+          <tr><td><code>20250409_SRRM2.ipynb</code></td><td>89</td><td>phospho, circos, cluster, cell_state, proteomics, spearman</td><td><code>build_pivot_table2</code>, <code>build_pivot_table3</code></td></tr>
+          <tr><td><code>20250409_VIM_cellstate.ipynb</code></td><td>153</td><td>phospho, circos, cluster, VIM, cell_state, spearman</td><td><code>build_pivot_table</code>, <code>build_pivot_table2</code>, <code>build_pivot_table3</code>, <code>get_expression_values</code></td></tr>
+          <tr><td><code>20250410_PTM*.ipynb</code></td><td>56 to 72 each</td><td>proteomics, glyco, acetyl, ubiquitin, phospho, XLMS in PTM_XL</td><td><code>corr_sites</code></td></tr>
+          <tr><td><code>20250412_PKM_ecotype.ipynb</code></td><td>42</td><td>acetyl, proteomics, zscore, PKM, glyco, diff</td><td><code>plot_enrichr_both</code>, <code>z_dataframe</code>, <code>z_row_subset</code></td></tr>
+          <tr><td><code>20250413_glyco_clustering.ipynb</code></td><td>53</td><td>cluster, proteomics, glyco, stage, zscore, cell_state</td><td><code>nan_correlation</code>, <code>fast_nan_correlation</code></td></tr>
+          <tr><td><code>20250416_GC_XLMS.ipynb</code></td><td>56</td><td>XLMS, phospho, circos, proteomics, acetyl, ubiquitin</td><td><code>z_row_subset</code></td></tr>
+          <tr><td><code>Gastric_FigureS5A_Acetyl_Ubi.ipynb</code></td><td>54</td><td>acetyl, proteomics, glyco, ubiquitin, phospho, diff</td><td><code>autopct_format</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

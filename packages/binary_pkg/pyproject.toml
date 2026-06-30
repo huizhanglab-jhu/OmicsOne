@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omicsone"
+version = "0.1.0"  
+description = "OmicsOne Streamlit app (binary-only)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["streamlit>=1.30", "fastapi>=0.115.12", "uvicorn>=0.34.2", "pyteomics>=4.7.5"]
+
+[tool.setuptools.package-dir]
+"" = "../../dist_artifacts"
+
+[tool.setuptools.packages.find]
+where = ["../../dist_artifacts"]
+include = ["omicsone*", "omicsone_streamlit*"]
+
+[tool.setuptools.package-data]
+"omicsone_streamlit" = [
+  "**/*.pyd", "**/*.so", "**/*.dll",
+  "**/*.toml", "**/*.yaml", "**/*.yml",
+  "**/*.json", "**/*.csv",
+  "**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.svg", "**/*.ico",
+  "**/*.ttf", "**/*.otf"
+]
+
+[project.scripts]
+omicsone = "omicsone.__main__:main"
+omicsone-api = "omicsone.api.__main__:main"
