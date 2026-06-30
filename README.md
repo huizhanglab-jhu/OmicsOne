@@ -50,12 +50,26 @@ python -m pip install -e C:\Users\yhu39\Documents\lab\OmicsOne
 
 ### Regular Users
 
-Install a prebuilt wheel from the GitHub Release that matches the local Python
-version. For example:
+Download a prebuilt wheel from the
+[OmicsOne 2.0.0 alpha GitHub Release](https://github.com/huizhanglab-jhu/OmicsOne/releases/tag/v2.0.0-alpha)
+that matches the local Python version:
+
+| Python | Wheel |
+| --- | --- |
+| 3.9 | [`omicsone-2.0.0a0-cp39-cp39-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp39-cp39-win_amd64.whl) |
+| 3.10 | [`omicsone-2.0.0a0-cp310-cp310-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp310-cp310-win_amd64.whl) |
+| 3.11 | [`omicsone-2.0.0a0-cp311-cp311-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp311-cp311-win_amd64.whl) |
+| 3.12 | [`omicsone-2.0.0a0-cp312-cp312-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp312-cp312-win_amd64.whl) |
+| 3.13 | [`omicsone-2.0.0a0-cp313-cp313-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp313-cp313-win_amd64.whl) |
+
+Install the downloaded wheel with pip. For example:
 
 ```powershell
 python -m pip install .\omicsone-2.0.0a0-cp311-cp311-win_amd64.whl
 ```
+
+Example data archives are also attached to the same Release as `HNSCC.zip`,
+`LSCC.zip`, and `references.zip`.
 
 Then verify the command-line entrypoints:
 
