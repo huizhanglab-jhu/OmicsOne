@@ -78,7 +78,7 @@ Sample Data:
 | HNSCC | [`HNSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/HNSCC.zip) |
 | LSCC | [`LSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/LSCC.zip) |
 | references.zip | [`references.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/references.zip) |
-| configs.zip | [`references.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/configs.zip) |
+| configs.zip | [`configs.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/configs.zip) |
 
 Then verify the command-line entrypoints:
 
