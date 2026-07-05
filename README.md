@@ -62,6 +62,7 @@ that matches the local Python version:
 | 3.12 | [`omicsone-2.0.0a0-cp312-cp312-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp312-cp312-win_amd64.whl) |
 | 3.13 | [`omicsone-2.0.0a0-cp313-cp313-win_amd64.whl`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/omicsone-2.0.0a0-cp313-cp313-win_amd64.whl) |
 
+
 Install the downloaded wheel with pip. For example:
 
 ```powershell
@@ -70,6 +71,13 @@ python -m pip install .\omicsone-2.0.0a0-cp311-cp311-win_amd64.whl
 
 Example data archives are also attached to the same Release as `HNSCC.zip`,
 `LSCC.zip`, and `references.zip`.
+
+Sample Data:
+| Name | Download |
+| --- | --- |
+| HNSCC | [`HNSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/HNSCC.zip) |
+| LSCC | [`LSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/LSCC.zip) |
+| references.zip | [`references.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/references.zip) |
 
 Then verify the command-line entrypoints:
 
@@ -162,11 +170,6 @@ The usual flow is:
 4. Unless `--quiet` is used, the CLI prints a JSON summary containing output
    paths and analysis statistics.
 
-Sample Data:
-| Name | Download |
-| --- | --- |
-| HNSCC | [`HNSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/HNSCC.zip) |
-| LSCC | [`LSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/LSCC.zip) |
 
 Common commands:
 
