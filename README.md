@@ -162,6 +162,12 @@ The usual flow is:
 4. Unless `--quiet` is used, the CLI prints a JSON summary containing output
    paths and analysis statistics.
 
+Sample Data:
+| Name | Download |
+| --- | --- |
+| HNSCC | [`HNSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/HNSCC.zip) |
+| LSCC | [`LSCC.zip`](https://github.com/huizhanglab-jhu/OmicsOne/releases/download/v2.0.0-alpha/LSCC.zip) |
+
 Common commands:
 
 ```powershell
