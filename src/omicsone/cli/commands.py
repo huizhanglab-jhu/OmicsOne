@@ -95,6 +95,17 @@ def run_cnv_correlation(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_omicsx(args: argparse.Namespace) -> int:
+    from omicsone.replay.omicsx import run_omicsx_analysis
+
+    run_omicsx_analysis(
+        args.config,
+        output_dir=args.output_dir,
+        print_json=print_json_enabled(args),
+    )
+    return 0
+
+
 def run_app(_args: argparse.Namespace) -> int:
     from omicsone_streamlit.__main__ import main as streamlit_main
 
@@ -154,6 +165,12 @@ def build_parser() -> argparse.ArgumentParser:
     cnv_run = cnv_subparsers.add_parser("run", help="Run the CNV correlation pipeline.")
     add_config_run_arguments(cnv_run)
     cnv_run.set_defaults(func=run_cnv_correlation)
+
+    omicsx = subparsers.add_parser("omicsx", help="Pairwise cross-omics correlation and clustering workflows.")
+    omicsx_subparsers = omicsx.add_subparsers(dest="omicsx_command", required=True)
+    omicsx_run = omicsx_subparsers.add_parser("run", help="Run all configured OmicsX pairs.")
+    add_config_run_arguments(omicsx_run)
+    omicsx_run.set_defaults(func=run_omicsx)
 
     app = subparsers.add_parser("app", help="Launch the Streamlit UI app.")
     app.set_defaults(func=run_app)

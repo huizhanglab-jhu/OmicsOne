@@ -150,6 +150,21 @@ def test_cnv_correlation_run_dispatches_to_replay_adapter(monkeypatch):
     ]
 
 
+def test_omicsx_run_dispatches_to_replay_adapter(monkeypatch):
+    calls = []
+    _install_module(monkeypatch, "omicsone.replay.omicsx", "run_omicsx_analysis", calls)
+
+    assert commands.main(["omicsx", "run", "--config", "input.ini", "--output-dir", "out", "--quiet"]) == 0
+
+    assert calls == [
+        (
+            "run_omicsx_analysis",
+            ("input.ini",),
+            {"output_dir": "out", "print_json": False},
+        )
+    ]
+
+
 def test_app_dispatches_to_streamlit_launcher(monkeypatch):
     module = types.ModuleType("omicsone_streamlit.__main__")
     calls = []

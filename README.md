@@ -20,6 +20,7 @@ The command-line interface currently supports:
 - Protein-vs-phosphosite pathway scatter plots
 - CNV correlation workflows
 - CNV correlation clean figure replay
+- Pairwise OmicsX feature, sample, and gene-sample correlation with sample clustering
 - Rust/PyO3-backed Spearman correlation through `omicsone.utils.spearmanr`
 
 ## Installation
@@ -136,6 +137,7 @@ omicsone mutations --help
 omicsone boxplots --help
 omicsone pathway-scatter --help
 omicsone cnv-correlation --help
+omicsone omicsx --help
 ```
 
 Show command-specific help:
@@ -147,6 +149,7 @@ omicsone mutations run --help
 omicsone boxplots run --help
 omicsone pathway-scatter phosphosite-protein --help
 omicsone cnv-correlation run --help
+omicsone omicsx run --help
 omicsone cnv-correlation clean-figures --help
 ```
 
@@ -182,6 +185,7 @@ omicsone boxplots run --config configs\HNSCC_Protein_boxplots.ini
 omicsone pathway-scatter phosphosite-protein --config configs\HNSCC_pathways.ini
 omicsone cnv-correlation run --config configs\HNCC_CNV.ini --output-dir runs\HNCC_CNV
 omicsone cnv-correlation clean-figures --config configs\HNCC_CNV_clean_figures.ini
+omicsone omicsx run --config configs\omicsX.ini --output-dir runs\omicsX
 ```
 
 Compatibility entrypoints are also available for CNV correlation:
@@ -234,6 +238,131 @@ generate_clean_figures = true
 
 Different workflows require different fields. If required fields are missing,
 the CLI reports which settings are missing.
+
+## OmicsX
+
+The reusable Python package is `omicsone.omicsx`. It replaces the legacy
+Streamlit-coupled OmicsX utilities with deterministic matrix alignment,
+pairwise-complete Spearman correlations, corrected hierarchical clustering,
+and replay-friendly output manifests.
+
+Rows are matched features and columns are samples. A feature may be a gene,
+protein, phosphosite, methylation feature, or another identifier, but the row
+identifier must use the same namespace in both matrices. OmicsX does not remove
+a feature merely because one sample is missing. Each correlation uses complete
+observations for that feature or sample and enforces the configured minimum.
+
+The pair folder convention is `omics1__omics2`. For example,
+`rna__protein` means `omics1 = rna` and `omics2 = protein`. In gene-sample
+correlation plots, omics1 is the x-axis and omics2 is the y-axis.
+
+### OmicsX Config
+
+All matrix entries under `[input]` whose keys end in `_path` are included.
+`metadata_path` is reserved and is not treated as an omics matrix. By default,
+all unordered input combinations are analyzed.
+
+```ini
+[task]
+name = omicsX
+
+[input]
+rna_path = E:\data\rna.tsv
+protein_path = E:\data\protein.tsv
+phospho_path = E:\data\phospho.tsv
+metadata_path = E:\data\metadata.tsv
+
+[output]
+output_dir = E:\runs\omicsX
+
+[settings]
+min_overlap_features = 10
+min_overlap_samples = 10
+min_feature_pairs = 10
+min_sample_pairs = 10
+high_low_fraction = 0.05
+max_variable_features = 1000
+n_clusters = 2
+dpi = 180
+generate_clustering = true
+save_aligned_matrices = true
+fail_on_pair_error = true
+```
+
+To run only selected ordered pairs, add a comma-separated setting. The order
+controls the omics1/omics2 labels:
+
+```ini
+[settings]
+pairs = rna:protein, rna:phospho, cnv_abs:dna_meth
+```
+
+Run the replay:
+
+```powershell
+omicsone omicsx run `
+  --config E:\runs\omicsX\config.ini `
+  --output-dir E:\runs\omicsX_replay
+```
+
+Each completed pair contains:
+
+```text
+<omics1>__<omics2>/
+|-- pair_info.json
+|-- gene_correlation/
+|   |-- gene_wise_corr.tsv
+|   `-- gene_correlation_hist.png
+|-- sample_correlation/
+|   |-- sample_wise_correlation.tsv
+|   |-- gene_sample_correlation.tsv
+|   |-- sample_correlation_bar.png
+|   `-- gene_sample_correlation_scatter.png
+|-- sample_clustering/
+|   |-- feature_high.tsv
+|   |-- feature_low.tsv
+|   |-- *_clusters.tsv
+|   `-- ARI.png
+`-- visualizations/
+    |-- top_feature_correlations.png
+    `-- omicsX_pair_overview.png
+```
+
+The output root also contains the effective `config.ini`, original
+`input_config.ini`, `omicsX_batch_manifest.json`, `omicsX_batch_summary.tsv`,
+and cross-pair median-correlation plots.
+
+### OmicsX Python API
+
+Run a complete config from Python:
+
+```python
+from omicsone.omicsx import run_omicsx_config
+
+result = run_omicsx_config(
+    r"E:\runs\omicsX\config.ini",
+    output_dir=r"E:\runs\omicsX_replay",
+)
+print(result["manifest"])
+```
+
+Use individual analysis functions with in-memory data frames:
+
+```python
+from omicsone.omicsx import (
+    align_matrices,
+    feature_correlations,
+    load_omics_matrix,
+    sample_correlations,
+)
+
+rna = load_omics_matrix(r"E:\data\rna.tsv")
+protein = load_omics_matrix(r"E:\data\protein.tsv")
+rna, protein = align_matrices(rna, protein)
+
+feature_result = feature_correlations(rna, protein, min_valid_pairs=10)
+sample_result = sample_correlations(rna, protein, min_valid_pairs=10)
+```
 
 ## Docker Replay
 

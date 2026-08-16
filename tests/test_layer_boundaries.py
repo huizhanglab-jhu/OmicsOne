@@ -36,6 +36,19 @@ def test_services_do_not_depend_on_entry_layers():
     assert violations == []
 
 
+def test_omicsx_package_does_not_depend_on_entry_layers():
+    banned_exact = {"fastapi", "streamlit"}
+    banned_prefixes = ("omicsone_streamlit", "omicsone.cli", "omicsone.api")
+    violations = []
+
+    for path in _python_files(SRC / "omicsone" / "omicsx"):
+        for module in _imported_modules(path):
+            if module in banned_exact or module.startswith(banned_prefixes):
+                violations.append(f"{path.relative_to(ROOT)} imports {module}")
+
+    assert violations == []
+
+
 def test_api_routers_do_not_import_streamlit_modules():
     violations = []
 
